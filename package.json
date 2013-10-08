@@ -1,0 +1,25 @@
+{
+  "name": "tuwien-geoweb",
+  "version": "0.0.0",
+  "description": "Slides for VU 280.290 at the Vienna University of Technology",
+  "repository": "",
+  "license": "BSD",
+  "readmeFilename": "README.md",
+  "devDependencies": {
+    "bower": "1.2.7",
+    "grunt": "0.4.1",
+    "grunt-gh-pages": "0.8.0",
+    "grunt-contrib-clean": "0.5.0",
+    "grunt-contrib-connect": "0.5.0",
+    "grunt-contrib-copy": "0.4.1",
+    "grunt-contrib-jade": "0.8.0",
+    "grunt-contrib-watch": "0.5.3",
+    "grunt-cli": "0.1.9"
+  },
+  "scripts": {
+    "install": "bower install",
+    "postinstall": "grunt clean build",
+    "start": "grunt start",
+    "deploy": "grunt deploy"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "tuwien-geoweb",
+  "version": "0.0.0",
+  "dependencies": {
+    "reveal.js": "2.5.0",
+    "bootstrap": "2.3.2"
+  }
+}
