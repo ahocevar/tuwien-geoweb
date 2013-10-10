@@ -32,6 +32,10 @@
       .reveal ul.centered {
         text-align: center;
       }
+      .reveal img.double {
+        width: 200%;
+        height: 200%;
+      }
       .reveal h2 > img {
         vertical-align: sub;
       }
@@ -66,6 +70,100 @@
             <li>More on HTML and CSS<br>
               <i>Your first map</i></li>
           </ul>
+        </section>
+        <section>
+          <h2>Why use spatial information on the web for planning?</h2>
+          <ul class="plain centered">
+            <li class="fragment">Participation</li>
+            <li class="fragment">Empowerment</li>
+            <li class="fragment">Reduce barriers</li>
+            <li class="fragment">Democratization</li>
+          </ul>
+        </section>
+        <section>
+          <h2>How to use web-based spatial information in planning</h2>
+          <ul class="plain centered">
+            <li><a href="http://www.machsleiser.de/karte">Let citizens complain</a></li>
+            <li><a href="http://www.nexthamburg.de/ideensammlung-karte/">Give suggestions a spatial dimension</a></li>
+            <li><a href="http://www.aspern-seestadt.at/mitgestalten-investieren/bauinfo/#full">Share interactive maps online</a></li>
+          </ul>
+        </section>
+        <section>
+          <h2>There is more WHERE than you think</h2>
+          <ul class="plain centered">
+            <li><a href="http://onemilliontweetmap.com">Social media - big data</a></li>
+            <li><a href="http://goo.gl/ctcxmS">Geocoding</a></li>
+            <li><a href="http://www.statistik.at/web_de/klassifikationen/regionale_gliederungen/gemeinden/index.html">Administrative units</a></li>
+          </ul>
+        </section>
+        <section>
+          <h2>Where is the WHERE quiz</h2>
+          <ul class="plain centered">
+            <li><a href="http://geizhals.at/">http://geizhals.at/</a></li>
+            <li><a href="http://drei.at/">http://drei.at/</a></li>
+            <li><a href="http://post.at/">http://post.at/</a></li>
+            <li><a href="http://fahrplan.oebb.at/">http://fahrplan.oebb.at/</a></li>
+            <li><a href="http://strava.com/">http://strava.com/</a></li>
+          </ul>
+        </section>
+        <section>
+          <h2>Guess what?</h2>
+          <h2 class="fragment">WHERE &ne; GIS</h2>
+        </section>
+        <section>
+          <h2>This is GIS - on the Web</h2>
+          <a href="http://gis2.stmk.gv.at/atlas4beta/(S(l1paxzdbg31ezitpzi2aqfr3))/init.aspx?styles=gisstmk&ks=das&cms=da&karte=kat&darstellungsvariante=flaewiein">Digital atlas of Styria</a>
+          <h2 class="fragment">:-(</h2>
+        </section>
+        <section>
+          <h3><a href="http://www.youtube.com/watch?v=mCidOGLSWkU">Paul Ramsey:<br>Spatial IT and the Spatial Web</a></h3>
+        </section>
+        <section>
+          <h2>Take-home message?</h2>
+        </section>
+        <section>
+          <img src="img/different.jpg" class="double">
+        </section>
+        <section>
+          <h2>Your first online map</h2>
+          <a href="examples/districts.html">Like this, but with your content</a>
+        </section>
+        <section>
+          <p>Goal: Use OpenLayers so we can create a map</p>
+          <a href="http://ol3js.org/">http://ol3js.org/</a>
+          <!--
+          * Go to "Quick start" and copy the code into a text editor.
+          * Mention that we want to use ol.css and ol.js from here instead
+          -->
+        </section>
+        <section>
+          <p>Goal: Use CSS to make the map fullscreen</p>
+          <pre class="fragment"><code class="css" data-trim>
+html, body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+          </code></pre>
+          <pre><code class="css" data-trim>
+div.full {
+  width: 100%;
+  height: 100%;
+}
+          </code></pre>
+          <pre><code class="html" data-trim>
+<div id="map" class="full"></div>
+          </code></pre>
+        </section>
+        <section>
+          <p>Goal: Use your own data</p>
+          <pre><code class="javascript" data-trim>
+source: new ol.source.Vector({
+  url: 'mydata.json',
+  parser: new ol.parser.GeoJSON()
+})
+          </code></pre>
+          <p class="fragment">What format does the data need to be in?</p>
         </section>
       </div>
     </div>
