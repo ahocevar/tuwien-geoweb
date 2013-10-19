@@ -67,7 +67,7 @@
           <ul class="plain centered">
             <li>Spatial information on the web and planning<br>
               <i>Why, how, where?</i></li>
-            <li>More on HTML and CSS<br>
+            <li>More on HTML, CSS and project management<br>
               <i>Your first map</i></li>
           </ul>
         </section>
@@ -156,14 +156,64 @@ div.full {
           </code></pre>
         </section>
         <section>
+          <a href="http://getbootstrap.com/css/">CSS with Twitter Bootstrap</a>
+        </section>
+        <section>
           <p>Goal: Use your own data</p>
           <pre><code class="javascript" data-trim>
 source: new ol.source.Vector({
-  url: 'mydata.json',
+  url: 'mydata.geojson',
   parser: new ol.parser.GeoJSON()
 })
           </code></pre>
           <p class="fragment">What format does the data need to be in?</p>
+        </section>
+        <section>
+          <p>mydata.geojson:</p>
+          <pre><code class="javascript" data-trim>
+{
+  "type": "FeatureCollection",
+  "features": [{
+    "type": "Feature",
+    "properties": {
+      "Name": "Andreas Hocevar"
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [16.3916015625, 48.21735290928554]
+    }
+  }]
+}
+          </code></pre>
+          <a class="fragment" href="http://geojson.io/">http://geojson.io/</a>
+        </section>
+        <section>
+          <p>Goal: Map preview of spatial data</p>
+          <p class="fragment">Goal: Avoid that stupid text editor</p>
+          <p class="fragment">Goal: History of changes</p>
+          <p class="fragment">Goal: Team collaboration and communication</p>
+          <a href="https://github.com/"><img class="fragment" src="img/github.png" class="double"></a>
+        </section>
+        <section>
+          <h2>Exercise - Part 1</h2>
+          <p>Task: Project setup on GitHub
+          <ul class="fragment">
+            <li>Create user accounts on GitHub (each group member)</li>
+            <li>Ask @ahocevar to make you members of tuwien-geoweb</li>
+            <li>Create a project for your group, named 'g01-2013', 'g02-2013' etc.</li>
+            <li>Set up a post receive hook to automatically deploy changes</li>
+          </ul>
+        </section>
+        <section>
+          <h2>Exercise - Part 2</h2>
+          <p>Task: Create a map with your group members' locations</p>
+          <ul class="fragment">
+            <li>Copy and paste <a href="examples/districts.html">this example</a> to your repo on GitHub - and make it work</li>
+            <li>Create a milestone named block3-exercise in GitHub</li>
+            <li>Create GitHub tickets for steps needed to accomplish the task</li>
+            <li>Work your way through the tickets to finalize the task</li>
+            <li>Create a release in GitHub and notify @ahocevar</li>
+          </ul>
         </section>
       </div>
     </div>
