@@ -68,7 +68,7 @@
             <li>Spatial information on the web and planning<br>
               <i>Why, how, where?</i></li>
             <li>More on HTML, CSS and project management<br>
-              <i>Your first map</i></li>
+              <i>Your first online map</i></li>
           </ul>
         </section>
         <section>
@@ -166,7 +166,7 @@ source: new ol.source.Vector({
   parser: new ol.parser.GeoJSON()
 })
           </code></pre>
-          <p class="fragment">What format does the data need to be in?</p>
+          <p class="fragment">What data format do we use here?</p>
         </section>
         <section>
           <p>mydata.geojson:</p>
@@ -193,6 +193,59 @@ source: new ol.source.Vector({
           <p class="fragment">Goal: History of changes</p>
           <p class="fragment">Goal: Team collaboration and communication</p>
           <a href="https://github.com/"><img class="fragment" src="img/github.png" class="double"></a>
+        </section>
+        <section>
+          <h2>Group exercises</h2>
+          <h3>Overview - one exercise per group</h3>
+          <ol>
+            <li>GitHub: How to commit binary files (images etc.)</li>
+            <li>Web maps: EPSG, 3857, 4326 - what it means, why it is important</li>
+            <li>CSS: Two-column Bootstrap layout with map and help text</li>
+            <li>HTML: &lt;!DOCTYPE html&gt; - why do we care about doctype?</li>
+            <li>GeoJSON: Export GIS data to GeoJSON - howto, benefits, limitations</li>
+          </ol>
+        </section>
+        <section>
+          <h3>Group exercise: GitHub</h3>
+          <p>When editing online, GitHub only works for files that can be opened
+            in a text editor. How can we take full advantage of GitHub, with
+            arbitrary file types in a repository?</p>
+          <p>Give a quick step-by-step tutorial for committing an image file to
+            GitHub.</p>
+          <p>Hint: To get started, find out what "Git" is.</p>
+        </section>
+        <section>
+          <h3>Group exercise: Web maps</h3>
+          <p>EPSG:3857 and EPSG:4326 are used in the <a href="#/10">Your first
+            online map</a> example. What does EPSG mean, and what do the
+            numbers mean?</p>
+          <p>Find the south pole on
+            <a href="http://openstreetmap.org/">http://openstreetmap.org/</a>.
+            Are you happy? Why (not)?</p>
+        </section>
+        <section>
+          <h3>Group exercise: CSS</h3>
+          <p>Bootstrap makes CSS easy. Using the map from the
+            <a href="#/10">Your first online map</a> example, create a page with
+            2 columns, each spanning half of the available page width. Place the
+            map in the left, and some help text in the right column.</p>
+        </section>
+        <section>
+          <h3>Group exercise: HTML</h3>
+          <p>As you may have noticed, neither these slides nor the
+            <a href="#/10">Your first online map</a> example work in older browsers. Find out
+            about HTML5, quirks mode, and how &lt;!DOCTYPE html&gt; relates to
+            it.</p>
+          <p>Discuss reasons why new web sites should (not) work in old
+            browsers.</p>
+        </section>
+        <section>
+          <h3>Group exercise: GeoJSON</h3>
+          <p>GeoJSON has become the de-facto standard transport format for 2D
+            geospatial data. Is it also useful as storage format? What are its
+            benefits, what its limitations?</p>
+          <p>Give a quick step-by-step tutorial for exporting geospatial data
+            from a Desktop GIS to GeoJSON.</p>
         </section>
         <section>
           <h2>Exercise - Part 1</h2>
