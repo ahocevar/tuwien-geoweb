@@ -77,7 +77,7 @@
           <h3>OGD Wien overview</h3>
           <ul>
             <li>Non-geospatial data</li>
-            <li>Census data for Statistik Austria regional classification</li>
+            <li>Census data for Statistik Austria regional classifications</li>
             <li>Geospatial vector data</li>
             <li>Raster maps</li>
           </ul>
@@ -92,15 +92,174 @@
           <ul>
             <li>Tile map service</li>
             <li>Routing</li>
-            <li>...</li>
+            <li>Humanitarian aid</li>
+            <li>Natural disaster response</li>
           </ul>
         </section>
         <section>
-          <h3>Spatial SQL</h3>
+          <a href="https://www.mapbox.com/openstreetmap/">OpenStreetMaps edits live</a>
+        </section>
+        <section>
+          <h3><a href="http://embed.ted.com/talks/tim_berners_lee_on_the_next_web.html">Tim Berners Lee: The next web</a></h3>
+        </section>
+        <section>
+          <h2>Spatial SQL</h2>
           <ul>
             <li>Store, analyze and manipulate spatial objects in databases</li>
             <li>Spatial data types, indexes and functions</li>
           </ul>
+        </section>
+        <section>
+          <h3>SpatiaLite</h3>
+          <p>A spatial SQL extension for SQLite</p>
+          <p>Implements the OGC Simple Features for SQL specification</p>
+        </section>
+        <section>
+          <h3>PostGIS</h3>
+          <p>The most advanced open source spatial database</p>
+          <p>Extends PostgreSQL</p>
+          <p>Very similar spatial SQL dialect, so we can use it as reference for
+            SpatiaLite</p>
+        </section>
+        <section>
+          <h3>Spatial SQL with SpatiaLite</h3>
+          <p><a href="http://workshops.boundlessgeo.com/postgis-intro/">http://workshops.boundlessgeo.com/postgis-intro/</a></p>
+          <p>Download the data bundle, but not the OpenGeo Suite</p>
+          <p>Download spatialite-gui: <a href="http://www.gaia-gis.it/gaia-sins/windows-bin-x86-prev/spatialite_gui-1.5.0-stable-win-x86.zip">Windows</a>|<a href="http://www.lthe.fr/PagePerso/debionne/software/spatialite_gui_1_5_0_static.dmg">OSX</a></p>
+          <p><a href="http://www.gaia-gis.it/gaia-sins/spatialite-sql-3.0.0.html">SpatiaLite SQL Reference</a></p>
+          <p><a href="http://www.sqlite.org/lang.html">SQLite SQL Reference</a></p>
+        </section>
+        <section>
+          <h3>Version check</h3>
+          <pre><code class="sql" data-trim>
+SELECT sqlite_version();
+          </code></pre>
+          <pre><code class="sql" data-trim>
+SELECT spatialite_version();
+          </code></pre>
+        </section>
+        <section>
+          <h3>Spatially enable an existing database</h3>
+          <p>Try this in phpLiteAdmin</p>
+          <pre><code class="sql" data-trim>
+SELECT InitSpatialMetadata();
+          </code></pre>
+        </section>
+        <section>
+          <h3>Add/recover a geometry column for an existing table</h3>
+          <p>Try this in phpLiteAdmin</p>
+          <pre><code class="sql" data-trim>
+SELECT AddGeometryColumn('feedback', 'geom', 4326, 'POINT', 'XY');
+          </code></pre>
+          <pre><code class="sql" data-trim>
+SELECT RecoverGeometryColumn('feedback', 'geom', 4326, 'POINT', 'XY');
+          </code></pre>
+        </section>
+        <section>
+          <h2>GeoServer</h2>
+          <p>Load, publish, style, and share geospatial data</p>
+          <p>Implements (among others) OGC WMS and WFS</p>
+        </section>
+        <section>
+          <h3>OpenGeo Suite</h3>
+          <p>A complete geospatial stack including GeoServer and PostGIS</p>
+          <p class="fragment">Commercial open source with professional support</p>
+          <p class="fragment">Best way to DIY install GeoServer</p>
+          <p class="fragment">Requires you to run your own server or use Amazon AWS</p>
+          <p class="fragment"><a href="http://opengeosuite.com/">http://opengeosuite.com/</a></p>
+        </section>
+        <section>
+          <h3>Hosted alternatives when maps are enough</h3>
+          <p><a href="http://mapbox.com/">MapBox</a></p>
+          <p><a href="http://cartodb.com/">CartoDB</a></p>
+        </section>
+        <section>
+          <h3>Introduction to GeoServer</h3>
+          <p><a href="http://workshops.boundlessgeo.com/geoserver-intro/">http://workshops.boundlessgeo.com/geoserver-intro/</a></p>
+          <p>No need to download the OpenGeo Suite.</p>
+          <p>We will publish our SpatiaLite layers instead of the example
+            shapefiles.</p>
+        </section>
+        <section>
+          <h3>SpatiaLite layers in GeoServer</h3>
+          <p>SpatiaLite data store</p>
+          <p>Path: /scratch/users/geoweb2013/htdocs/gXX/ + file</p>
+        </section>
+        <section>
+          <h2>Group exercises</h2>
+          <h3>Overview - one exercise per group</h3>
+          <ol>
+            <li>OpenGeo Suite: First steps experience</li>
+            <li>SpatiaLite: How to import GeoJSON</li>
+            <li>GeoServer: How to publish a layer from a shapefile</li>
+            <li>OGD Wien: Overview of data relevant for planning</li>
+            <li>OpenStreetMap: Getting involved - why and how</li>
+          </ol>
+        </section>
+        <section>
+          <h2>Group exercise: OpenGeo Suite</h2>
+          <p>Share your experience performing the following tasks:</p>
+          <ul>
+            <li>Download and install the OpenGeo Suite</li>
+            <li>Import a shapefile of your choice</li>
+            <li>Style your data</li>
+            <li>Publish a map</li>
+          </ul>
+          <p><br>Document the steps with screen shots.</p>
+        </section>
+        <section>
+          <h2>Group exercise: SpatiaLite</h2>
+          <p>Describe the process involved in importing a GeoJSON file into
+            SpatiaLite.</p>
+          <p>Use your GeoJSON file with the group members as example. Document
+            the steps using screen shots.</p>
+        </section>
+        <section>
+          <h2>Group exercise: GeoServer</h2>
+          <p>Explain how to publish a layer from a shapefile.</p>
+          <p>Create a copy of map.html from the previous exercise and show the
+            contents of the shapefile instead.</p>
+          <p>Use a shapefile from OGD Wien, and document the process using
+            screen shots.</p>
+          <p>Hint: The path to shapefiles is the same as to sqlite files.</p>
+        </section>
+        <section>
+          <h2>Group exercise: OGD Wien</h2>
+          <p>Browsing the data catalog, compile a list of data that you consider
+            useful for planning.</p>
+          <p>For each of the suitable data sets, come up with an example of how
+            it could be used in planning.</p>
+        </section>
+        <section>
+          <h2>Group exercise: OpenStreetMap</h2>
+          <p>Give a brief introduction on how to get started with contributing
+            to OpenStreetMap.</p>
+          <p>Sign up, find something wrong/missing in OpenSteetMap, and fix
+            it. Document the steps with screen shots.</p>
+        </section>
+        <section>
+          <h2>Exercise - Part 1</h2>
+          <h3>Task: Add user's coordinates to the feedback form</h3>
+          <ul>
+            <li>If you haven't already, finish the feedback page (Block 1)</li>
+            <li>Copy the code to GitHub</li>
+            <li>Add a "geom" column (type: Point) to the feedback table</li>
+            <li>Add two form fields to the page: latitude and longitude</li>
+            <li>Update the PHP code to populate the geometry column with the
+              coordinates composed of latitude and longitude</li>
+          </ul> 
+        </section>
+        <section>
+          <h2>Exercise - Part 2</h2>
+          <h3>Task: Show feedback coordinates on a map next to the form</h3>
+          <ul>
+            <li>Create a copy of map.html (feedback_map.html) from last week's
+              exercise</li>
+            <li>Using a 2-column Bootstrap layout, update the page to show both
+              map and form</li>
+            <li>Configure the feedback table as layer in GeoServer</li>
+            <li>Update feedback_map.html to show the feedback layer</li>
+          </ul> 
         </section>
       </div>
     </div>
