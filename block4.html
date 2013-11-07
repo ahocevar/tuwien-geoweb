@@ -146,6 +146,12 @@ SELECT InitSpatialMetadata();
           </code></pre>
         </section>
         <section>
+          <h3>Load SpatiaLite extension in PHP</h3>
+          <pre><code class="php" data-trim>
+$db->loadExtension('libspatialite.so');
+          </code></pre>
+        </section>
+        <section>
           <h3>Add/recover a geometry column for an existing table</h3>
           <p>Try this in phpLiteAdmin</p>
           <pre><code class="sql" data-trim>
