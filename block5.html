@@ -107,16 +107,18 @@
         <section>
           <h3>Exercise</h3>
           <p>Create an OpenLayers map with an OpenStreetMap layer. Center the
-            map on the user's location, taking into account the accuracy of the
-            location result. Add a search box where the user can enter a search
-            term, and the map zooms to the bounding box of the first
-            OpenStreetMap Nominatim search result. The search turns off the
-            Geolocation tracking</p>
+            map on the user's location. Add a search box where the user can
+            enter a search term, and the map centers on the location of the
+            first OpenStreetMap Nominatim search result. The search turns off
+            the Geolocation tracking</p>
         </section>
         <section>
           <h3>Bonus Task</h3>
-          <p>Draw a marker at the most recent user location or search result.
+          <p>Draw a marker at the most recent user or search result location.
             Add a button to turn Geolocation tracking back on after a search.
+            Instead of just centering the map on the new location, fit the map's
+            extent to the accuracy circle of the Geolocation and the bounding
+            box of the search result.
           </p>
         </section>
       </div>
