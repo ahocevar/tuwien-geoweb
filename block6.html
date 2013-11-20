@@ -65,6 +65,170 @@
               <i>Client-server solution for spatial information on the web</i></li>
           </ul>
         </section>
+        <section>
+          <h2>Census Mapping Application</h2>
+          <p><a href="http://student.ifip.tuwien.ac.at/geoweb/2013/censusmap/doc/">Tutorial</a></p>
+        </section>
+        <section>
+          <p><b>Challenge 1 (today):</b> Use SQLite instead of PostGIS</p>
+          <p><b>Challenge 2 (exercise):</b> Use different data</p>
+        </section>
+        <section>
+          <h3>CSV import to SQLite</h3>
+          <p>Easy with spatialite-gui</p>
+          <p>No need to create the structure first</p>
+        </section>
+        <section>
+          <h3>Delete all rows that have zeroes in the last 3 digits</h3>
+          <pre><code class="sql" data-trim>
+DELETE FROM census WHERE fips % 1000 = 0;
+          </code></pre>
+        </section>
+        <section>
+          <h3>Common table expressions</h3>
+          <p>SQLite does not support WITH, so we do SELECT FROM (SELECT ...) instead</p>
+          <pre><code class="sql" data-trim>
+SELECT
+  census.fips,
+  counties.geom,
+  counties.name || ' County' AS name,
+  '%column%' AS variable,
+  %column% AS data,
+  (%column% - stats.avg) / stats.stddev AS normalized_data
+FROM (
+  SELECT
+    avg(%column%) as avg,
+    stddev_samp(%column%) as stddev
+  FROM census
+) AS stats, census
+JOIN counties USING (fips)
+          </code></pre>
+        </section>
+        <section>
+          <h3>Extend the application</h3>
+          <ul>
+            <li>Add location search - zoom to result</li>
+            <li>Extend popup to store comments for locations</li>
+            <li>Display comment locations on the map</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Add location search - zoom to result</h3>
+          <p>New search input group in the navbar's &lt;form&gt;</p>
+          <pre><code class="html" data-trim>
+&lt;div class="input-group"&gt;
+  &lt;input type="text" class="form-control" name="query"&gt;
+  &lt;span class="input-group-btn"&gt;
+    &lt;button class="btn btn-default" type="submit"&gt;
+      &lt;span class="glyphicon glyphicon-search">&lt;/span&gt;
+    &lt;/button&gt;
+  &lt;/span&gt;
+&lt;/div&gt;
+          </code></pre>
+        </section>
+        <section>
+          <h3>Add location search - zoom to result</h3>
+          <p>Additional CSS in the application's &lt;style&gt; section</p>
+          <pre><code class="css" data-trim>
+.navbar-form .input-group {
+  width: 300px;
+  padding-right: 20px;
+  float: left;
+}
+.navbar-form .form-group {
+  width: 450px;
+}
+          </code></pre>
+        </section>
+        <section>
+          <h3>Add location search - zoom to result</h3>
+          <p>Additional JavaScript</p>
+          <pre><code style="font-size: 18px; line-height: 22px" class="javascript" data-trim>
+// Submit query to Nominatim and zoom map to the result's extent
+var form = document.forms[0];
+form.onsubmit = function(evt) {
+  var url = 'http://nominatim.openstreetmap.org/search?format=json&q=';
+  url += form.query.value;
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", url, true);
+  xhr.onload = function() {
+    var result = JSON.parse(xhr.responseText);
+    if (result.length > 0) {
+      var bbox = result[0].boundingbox;
+      olMap.getView().fitExtent(ol.proj.transform([parseFloat(bbox[2]),
+          parseFloat(bbox[0]), parseFloat(bbox[3]), parseFloat(bbox[1])],
+          'EPSG:4326', 'EPSG:3857'), olMap.getSize());
+    }
+  };
+  xhr.send();
+  evt.preventDefault();
+};
+          </code></pre>
+        </section>
+        <section>
+          <h3>Add location search - zoom to result</h3>
+          <p>Add <b>maxZoom</b> in view config to restrict zoom level</p>
+          <pre><code class="javascript" data-trim>
+view: new ol.View2D({
+  center: [-10764594.0, 4523072.0],
+  zoom: 5,
+  maxZoom: 18
+})
+          </code></pre>
+        </section>
+        <section>
+          <h3>Extend popup to store comments for locations</h3>
+          <p>Preparation and PHP coding</p>
+          <ul>
+            <li>Create a new database table with 'comment' and 'location' rows</li>
+            <li>Publish the table as layer in GeoServer</li>
+            <li>Style the layer nicely, e.g. with icon markers</li>
+            <li>Create a php script to add entries from a form to the table</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Extend popup to store comments for locations</h3>
+          <p>HTML work</p>
+          <ul>
+            <li>Append a 'popup-form' div to the 'popup' div</li>
+            <li>Add a form with 'comment' field and a submit button</li>
+            <li>Add hidden 'longitude' and 'latitude' fields</li>
+            <li>Set the form's action to your php script's url</li>
+            <li>Style the form nicely, e.g. using Bootstrap</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Extend popup to store comments for locations</h3>
+          <p>JavaScript work</p>
+          <ul>
+            <li>Use <b>evt.getCoordinate()</b> in the popup handler to get longitude and latitude</li>
+            <li>Set the <b>value</b> attributes of the hidden fields</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Display comment locations on the map</h3>
+          <p>This is easy - just add your layer's name to the 'LAYERS' param of
+            the WMS source - the 'LAYERS' value is a comma separated list of layers.</p>
+        </section>
+        <section>
+          <h2>The final exercise</h2>
+          <h3>Residential location optimizer</h3>
+          <p>Presentation: January 16th, 10:00am, PC1</p>
+        </section>
+        <section>
+          <h3>Minimum requirement</h3>
+          <p>Today's census map with extensions. Replace
+            U.S. census data with data for Vienna/Austria that is relevant for
+            decision making in finding an optimal residential location.</p>
+        </section>
+        <section>
+          <h3>Improvement ideas</h3>
+          <ul>
+            <li>Add external layers (e.g. WMS layers from OGD Wien)</li>
+            <li>Create a nice legend</li>
+            <li>Interactive data analysis around a user location</li>
+          </ul>
+        </section>
       </div>
     </div>
 
