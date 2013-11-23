@@ -255,7 +255,7 @@ comment.onsubmit = function(evt) {
 var commentLayer = new ol.layer.Image({
   source: new ol.source.ImageWMS({
     url: '/geoserver/wms',
-    params: {'LAYERS': 'ifip_2013:comments'}
+    params: {'LAYERS': 'gXX_2013:comments'}
   })
 });
 olMap.addLayer(commentLayer);
