@@ -180,7 +180,7 @@ view: new ol.View2D({
           <h3>Extend popup to store comments for locations</h3>
           <p>Create a new database table with 'fid', 'comment' and 'geom' rows</p>
           <pre><code class="sql" data-trim>
-CREATE TABLE 'comments' ('fid' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 'comment' TEXT);          <pre><code class="sql" data-trim>
+CREATE TABLE 'comments' ('fid' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 'comment' TEXT);
           </code></pre>
           <pre><code class="sql" data-trim>
 SELECT AddGeometryColumn('comments', 'geom', 4326, 'POINT', 'XY');
