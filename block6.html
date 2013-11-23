@@ -178,37 +178,88 @@ view: new ol.View2D({
         </section>
         <section>
           <h3>Extend popup to store comments for locations</h3>
-          <p>Preparation and PHP coding</p>
-          <ul>
-            <li>Create a new database table with 'comment' and 'location' rows</li>
-            <li>Publish the table as layer in GeoServer</li>
-            <li>Style the layer nicely, e.g. with icon markers</li>
-            <li>Create a php script to add entries from a form to the table</li>
-          </ul>
+          <p>Create a new database table with 'fid', 'comment' and 'geom' rows</p>
+          <pre><code class="sql" data-trim>
+CREATE TABLE 'comments' ('fid' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 'comment' TEXT);
+          </code></pre>
+          <pre><code class="sql" data-trim>
+SELECT AddGeometryColumn('comments', 'geom', 4326, 'POINT', 'XY');
+          </code></pre>
+          <pre><code class="sql" data-trim>
+SELECT CreateSpatialIndex('comments', 'geom');
+          </code></pre>
         </section>
         <section>
           <h3>Extend popup to store comments for locations</h3>
-          <p>HTML work</p>
-          <ul>
-            <li>Append a 'popup-form' div to the 'popup' div</li>
-            <li>Add a form with 'comment' field and a submit button</li>
-            <li>Add hidden 'longitude' and 'latitude' fields</li>
-            <li>Set the form's action to your php script's url</li>
-            <li>Style the form nicely, e.g. using Bootstrap</li>
-          </ul>
+          <p>Publish the table as layer in GeoServer. <b>Important</b>: Set the bounding box to -180, -90, 180, 90!</p>
+          <p>Style the layer nicely, creating a new style and using the SLD cookbook</p>
         </section>
         <section>
           <h3>Extend popup to store comments for locations</h3>
-          <p>JavaScript work</p>
-          <ul>
-            <li>Use <b>evt.getCoordinate()</b> in the popup handler to get longitude and latitude</li>
-            <li>Set the <b>value</b> attributes of the hidden fields</li>
-          </ul>
+          <p>Create a PHP script that stores comment and location</p>
+          <pre><code class="php" data-trim>
+&lt;?php
+  $comment = $_REQUEST['comment'];
+  $latitude = $_REQUEST['latitude'];
+  $longitude = $_REQUEST['longitude'] ;  
+  $db = new SQLite3('/scratch/users/geoweb2013/htdocs/gXX/gXX_census.sqlite');
+  $db->loadExtension('libspatialite.so');
+  $sql = "INSERT INTO comments (comment, geom) ";
+  $sql .= "VALUES ('" . $comment . "', ";
+  $sql .= "GeomFromText('POINT(" . $longitude . " " . $latitude . ")', 4326))";
+  $db->exec($sql) or die ('Error: '.$db->lastErrorMsg());  
+  $db->close();
+  echo "Thanks for your comment.";
+?&gt;
+          </code></pre>
+        </section>
+        <section>
+          <h3>Extend popup to store comments for locations</h3>
+          <p>Add HTML for the comment form inside the popup, just after popup-content</p>
+          <pre><code class="html" data-trim>
+&lt;form class="input-group"&gt;
+  &lt;input type="text" class="form-control" name="comment"&gt;
+  &lt;span class="input-group-btn"&gt;
+    &lt;button class="btn btn-default" type="submit"&gt;Comment&lt;/button&gt;
+  &lt;/span&gt;
+&lt;/form&gt;
+          </code></pre>
+        </section>
+        <section>
+          <h3>Extend popup to store comments for locations</h3>
+          <p>Additional JavaScript for comment submission</p>
+          <pre><code class="js" data-trim>
+// Submit comment
+var comment = document.forms[1];
+comment.onsubmit = function(evt) {
+  var lonlat = ol.proj.transform(popup.getPosition(), 'EPSG:3857', 'EPSG:4326');
+  var url = 'comment.php?comment=' + comment.comment.value +
+      '&longitude=' + lonlat[0] + '&latitude=' + lonlat[1];
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', url);
+  xhr.onload = function() {
+    commentLayer.getSource().updateParams({});
+    alert(xhr.responseText);
+    comment.comment.value = '';
+  };
+  xhr.send();
+  evt.preventDefault();
+};
+        </code></pre>
         </section>
         <section>
           <h3>Display comment locations on the map</h3>
-          <p>This is easy - just add your layer's name to the 'LAYERS' param of
-            the WMS source - the 'LAYERS' value is a comma separated list of layers.</p>
+          <p>This is easy - just add another WMS layer.</p>
+          <pre><code class="js" data-trim>
+// Add comment layer to the map
+var commentLayer = new ol.layer.Image({
+  source: new ol.source.ImageWMS({
+    url: '/geoserver/wms',
+    params: {'LAYERS': 'gXX_2013:comments'}
+  })
+});
+olMap.addLayer(commentLayer);
+          </code></pre>
         </section>
         <section>
           <h2>The final exercise</h2>
