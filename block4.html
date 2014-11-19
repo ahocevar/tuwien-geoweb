@@ -97,7 +97,7 @@
           </ul>
         </section>
         <section>
-          <a href="https://www.mapbox.com/openstreetmap/">OpenStreetMaps edits live</a>
+          <a href="http://live.openstreetmap.fr">OpenStreetMaps edits live</a>
         </section>
         <section>
           <h3><a href="http://embed.ted.com/talks/tim_berners_lee_on_the_next_web.html">Tim Berners Lee: The next web</a></h3>
@@ -124,9 +124,9 @@
         <section>
           <h3>Spatial SQL with SpatiaLite</h3>
           <p><a href="http://workshops.boundlessgeo.com/postgis-intro/">http://workshops.boundlessgeo.com/postgis-intro/</a></p>
-          <p>Download the data bundle, but not the OpenGeo Suite</p>
+          <p>Download the data bundle, but not OpenGeo Suite</p>
           <p>Download spatialite-gui: <a href="http://www.gaia-gis.it/gaia-sins/windows-bin-x86-prev/spatialite_gui-1.5.0-stable-win-x86.zip">Windows</a>|<a href="http://www.lthe.fr/PagePerso/debionne/software/spatialite_gui_1_5_0_static.dmg">OSX</a></p>
-          <p><a href="http://www.gaia-gis.it/gaia-sins/spatialite-sql-3.0.0.html">SpatiaLite SQL Reference</a></p>
+          <p><a href="http://www.gaia-gis.it/spatialite-3.0.0-BETA/spatialite-sql-3.0.0.html">SpatiaLite SQL Reference</a></p>
           <p><a href="http://www.sqlite.org/lang.html">SQLite SQL Reference</a></p>
         </section>
         <section>
@@ -140,25 +140,16 @@ SELECT spatialite_version();
         </section>
         <section>
           <h3>Spatially enable an existing database</h3>
-          <p>Try this in phpLiteAdmin</p>
+          <p>Try this on your geoweb db in spatialite-gui</p>
           <pre><code class="sql" data-trim>
 SELECT InitSpatialMetadata();
           </code></pre>
         </section>
         <section>
-          <h3>Load SpatiaLite extension in PHP</h3>
-          <pre><code class="php" data-trim>
-$db->loadExtension('libspatialite.so');
-          </code></pre>
-        </section>
-        <section>
-          <h3>Add/recover a geometry column for an existing table</h3>
-          <p>Try this in phpLiteAdmin</p>
+          <h3>Add a geometry column to a table</h3>
+          <p>Try this on your geoweb db in spatialite-gui</p>
           <pre><code class="sql" data-trim>
 SELECT AddGeometryColumn('feedback', 'geom', 4326, 'POINT', 'XY');
-          </code></pre>
-          <pre><code class="sql" data-trim>
-SELECT RecoverGeometryColumn('feedback', 'geom', 4326, 'POINT', 'XY');
           </code></pre>
         </section>
         <section>
@@ -182,20 +173,19 @@ SELECT RecoverGeometryColumn('feedback', 'geom', 4326, 'POINT', 'XY');
         <section>
           <h3>Introduction to GeoServer</h3>
           <p><a href="http://workshops.boundlessgeo.com/geoserver-intro/">http://workshops.boundlessgeo.com/geoserver-intro/</a></p>
-          <p>No need to download the OpenGeo Suite.</p>
+          <p>No need to download OpenGeo Suite.</p>
           <p>We will publish our SpatiaLite layers instead of the example
             shapefiles.</p>
         </section>
         <section>
           <h3>SpatiaLite layers in GeoServer</h3>
           <p>SpatiaLite data store</p>
-          <p>Path: /scratch/users/geoweb2013/htdocs/gXX/ + file</p>
+          <p>Path: /scratch/users/geoweb2014/htdocs/gXX/ + file</p>
         </section>
         <section>
           <h2>Group exercises</h2>
           <h3>Overview - one exercise per group</h3>
           <ol>
-            <li>OpenGeo Suite: First steps experience</li>
             <li>SpatiaLite: How to import GeoJSON</li>
             <li>GeoServer: How to publish a layer from a shapefile</li>
             <li>OGD Wien: Overview of data relevant for planning</li>
@@ -203,30 +193,16 @@ SELECT RecoverGeometryColumn('feedback', 'geom', 4326, 'POINT', 'XY');
           </ol>
         </section>
         <section>
-          <h2>Group exercise: OpenGeo Suite</h2>
-          <p>Share your experience performing the following tasks:</p>
-          <ul>
-            <li>Download and install the OpenGeo Suite</li>
-            <li>Import a shapefile of your choice</li>
-            <li>Style your data</li>
-            <li>Publish a map</li>
-          </ul>
-          <p><br>Document the steps with screen shots.</p>
-        </section>
-        <section>
           <h2>Group exercise: SpatiaLite</h2>
-          <p>Describe the process involved in importing a GeoJSON file into
-            SpatiaLite.</p>
-          <p>Use your GeoJSON file with the group members as example. Document
-            the steps using screen shots.</p>
+          <p>Describe steps for importing a GeoJSON file into SpatiaLite.</p>
+          <p>Try your GeoJSON file with the group members.</p>
         </section>
         <section>
           <h2>Group exercise: GeoServer</h2>
-          <p>Explain how to publish a layer from a shapefile.</p>
+          <p>Learn how to publish a layer from a shapefile.</p>
+          <p>Use a shapefile from OGD Wien.</p>
           <p>Create a copy of map.html from the previous exercise and show the
             contents of the shapefile instead.</p>
-          <p>Use a shapefile from OGD Wien, and document the process using
-            screen shots.</p>
           <p>Hint: The path to shapefiles is the same as to sqlite files.</p>
         </section>
         <section>
@@ -241,20 +217,24 @@ SELECT RecoverGeometryColumn('feedback', 'geom', 4326, 'POINT', 'XY');
           <p>Give a brief introduction on how to get started with contributing
             to OpenStreetMap.</p>
           <p>Sign up, find something wrong/missing in OpenSteetMap, and fix
-            it. Document the steps with screen shots.</p>
+            it.</p>
         </section>
         <section>
           <h2>Exercise - Part 1</h2>
-          <h3>Task: Add user's coordinates to the feedback form</h3>
+          <h3>Task: JavaScript + WFS feedback form</h3>
           <ul>
-            <li>If you haven't already, finish the feedback page (Block 1).</li>
-            <li>Copy the code to GitHub. <b>Important:</b> For security reasons,
-              change the code so it does not send an e-mail before saving the
-              code in GitHub.</li>
-            <li>Add a "geom" column (type: Point) to the feedback table.</li>
-            <li>Add two form fields to the page: latitude and longitude.</li>
-            <li>Update the PHP code to populate the geometry column with the
-              coordinates composed of latitude and longitude.</li>
+            <li>Use spatialite-gui to add a "geom" Point column to the feedback table</li>
+            <li>Configure the feedback table as layer in GeoServer</li>
+            <li>Save your feedback.php as feedback.html on GitHub.</li>
+            <li>Add some JavaScript (change gXX to match your group):
+              <pre><code class="html" data-trim>&lt;script src="http://openlayers.org/en/v3.0.0/build/ol.js"&gt;&lt;/script&gt;
+&lt;script src="http://bit.ly/11ymsFZ"&gt;&lt;/script&gt;
+&lt;script&gt;
+  featureType = "feedback";
+  featureNS = "http://geoweb/2014/gXX";
+&lt;/script&gt;</code></pre></li>
+          <li>Change the &lt;form&gt; element:
+            <pre><code class="html" data-trim>&lt;form action="javascript:submitForm();"&gt;</code></pre>
           </ul> 
         </section>
         <section>
@@ -265,7 +245,6 @@ SELECT RecoverGeometryColumn('feedback', 'geom', 4326, 'POINT', 'XY');
               exercise</li>
             <li>Using a 2-column Bootstrap layout, update the page to show both
               map and form</li>
-            <li>Configure the feedback table as layer in GeoServer</li>
             <li>Update feedback_map.html to show the feedback layer</li>
           </ul> 
         </section>
