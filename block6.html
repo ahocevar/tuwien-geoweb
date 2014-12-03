@@ -67,7 +67,7 @@
         </section>
         <section>
           <h2>Census Mapping Application</h2>
-          <p><a href="http://student.ifip.tuwien.ac.at/geoweb/2013/censusmap/doc/">Tutorial</a></p>
+          <p><a href="http://workshops.boundlessgeo.com/tutorial-censusmap/">Tutorial</a></p>
         </section>
         <section>
           <p><b>Challenge 1 (today):</b> Use SQLite instead of PostGIS</p>
@@ -169,7 +169,7 @@ form.onsubmit = function(evt) {
           <h3>Add location search - zoom to result</h3>
           <p>Add <b>maxZoom</b> in view config to restrict zoom level</p>
           <pre><code class="javascript" data-trim>
-view: new ol.View2D({
+view: new ol.View({
   center: [-10764594.0, 4523072.0],
   zoom: 5,
   maxZoom: 18
@@ -196,26 +196,7 @@ SELECT CreateSpatialIndex('comments', 'geom');
         </section>
         <section>
           <h3>Extend popup to store comments for locations</h3>
-          <p>Create a PHP script that stores comment and location</p>
-          <pre><code class="php" data-trim>
-&lt;?php
-  $comment = $_REQUEST['comment'];
-  $latitude = $_REQUEST['latitude'];
-  $longitude = $_REQUEST['longitude'] ;  
-  $db = new SQLite3('/scratch/users/geoweb2013/htdocs/gXX/gXX_census.sqlite');
-  $db->loadExtension('libspatialite.so');
-  $sql = "INSERT INTO comments (comment, geom) ";
-  $sql .= "VALUES ('" . $comment . "', ";
-  $sql .= "GeomFromText('POINT(" . $longitude . " " . $latitude . ")', 4326))";
-  $db->exec($sql) or die ('Error: '.$db->lastErrorMsg());  
-  $db->close();
-  echo "Thanks for your comment.";
-?&gt;
-          </code></pre>
-        </section>
-        <section>
-          <h3>Extend popup to store comments for locations</h3>
-          <p>Add HTML for the comment form inside the popup, just after popup-content</p>
+          <p>Add HTML for the comment form inside the popup-content div, just after the iframe</p>
           <pre><code class="html" data-trim>
 &lt;form class="input-group"&gt;
   &lt;input type="text" class="form-control" name="comment"&gt;
@@ -227,47 +208,45 @@ SELECT CreateSpatialIndex('comments', 'geom');
         </section>
         <section>
           <h3>Extend popup to store comments for locations</h3>
-          <p>Additional JavaScript for comment submission</p>
+          <p>Add JavaScript at the end of the 'singleclick' handler</p>
           <pre><code class="js" data-trim>
-// Submit comment
-var comment = document.forms[1];
-comment.onsubmit = function(evt) {
-  var lonlat = ol.proj.transform(popup.getPosition(), 'EPSG:3857', 'EPSG:4326');
-  var url = 'comment.php?comment=' + comment.comment.value +
-      '&longitude=' + lonlat[0] + '&latitude=' + lonlat[1];
+$('.popover form')[0].onsubmit = function(e) {
+  var feature = new ol.Feature();
+  feature.setGeometryName('geom');
+  feature.setGeometry(new ol.geom.Point(evt.coordinate));
+  feature.set('comment', this.comment.value);
+  var xml = new ol.format.WFS().writeTransaction([feature], null, null, {
+    featureType: 'comments', featureNS: 'http://geoweb/2014/gXX',
+    gmlOptions: {srsName: 'EPSG:3857'}
+  });
   var xhr = new XMLHttpRequest();
-  xhr.open('GET', url);
+  xhr.open('POST', 'http://student.ifip.tuwien.ac.at/geoserver/wfs', true);
   xhr.onload = function() {
-    commentLayer.getSource().updateParams({});
-    alert(xhr.responseText);
-    comment.comment.value = '';
+    wmsLayer.getSource().updateParams({});
+    alert('Thanks for your comment.');
   };
-  xhr.send();
-  evt.preventDefault();
+  xhr.send(new XMLSerializer().serializeToString(xml));
+  e.preventDefault();
 };
         </code></pre>
         </section>
         <section>
-          <h3>Display comment locations on the map</h3>
-          <p>This is easy - just add another WMS layer.</p>
+          <h3>Display comment locations layer on the map</h3>
+          <p>This is easy - just add it WMS LAYERS param.</p>
           <pre><code class="js" data-trim>
-// Add comment layer to the map
-var commentLayer = new ol.layer.Image({
-  source: new ol.source.ImageWMS({
-    url: '/geoserver/wms',
-    params: {'LAYERS': 'gXX_2013:comments'}
-  })
-});
-olMap.addLayer(commentLayer);
+source: new ol.source.ImageWMS({
+  url: 'http://student.ifip.tuwien.ac.at/geoserver/wms',
+  params: {'LAYERS': 'gXX_2014:normalized,gXX_2014:comments'}
+}),
           </code></pre>
         </section>
         <section>
           <h2>The final exercise</h2>
           <h3>Residential location optimizer</h3>
-          <p>Presentation: January 16th, 10:00am, PC1</p>
+          <p>Presentation: January 15th, 10:00am, PC1</p>
         </section>
         <section>
-          <h3>Minimum requirement</h3>
+          <h3>Minimum requirements</h3>
           <p>Today's census map with extensions. Replace
             U.S. census data with data for Vienna/Austria that is relevant for
             decision making in finding an optimal residential location.</p>
