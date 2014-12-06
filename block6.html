@@ -185,9 +185,6 @@ CREATE TABLE 'comments' ('fid' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 'comm
           <pre><code class="sql" data-trim>
 SELECT AddGeometryColumn('comments', 'geom', 4326, 'POINT', 'XY');
           </code></pre>
-          <pre><code class="sql" data-trim>
-SELECT CreateSpatialIndex('comments', 'geom');
-          </code></pre>
         </section>
         <section>
           <h3>Extend popup to store comments for locations</h3>
