@@ -9,14 +9,15 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <link rel="stylesheet" href="components/reveal.js/css/reveal.min.css">
+    <link rel="stylesheet" href="bower_components/reveal.js/css/reveal.min.css">
+    <!--link rel="stylesheet" href="bower_components/reveal.js/css/print/pdf.css"-->
     <link rel="stylesheet" href="theme/geoweb.css" id="theme">
 
     <!-- For syntax highlighting -->
-    <link rel="stylesheet" href="components/reveal.js/lib/css/zenburn.css">
+    <link rel="stylesheet" href="bower_components/reveal.js/lib/css/zenburn.css">
 
     <!--[if lt IE 9]>
-    <script src="components/reveal.js/lib/js/html5shiv.js"></script>
+    <script src="bower_components/reveal.js/lib/js/html5shiv.js"></script>
     <![endif]-->
     <style>
       .reveal h1.humble {
@@ -83,7 +84,7 @@
         <section>
           <h2>How to use web-based spatial information in planning</h2>
           <ul class="plain centered">
-            <li><a href="http://www.stadtteilbuero-habinghorst.de/index.php/projekte/interaktive-projektkarte.html">Share interactive maps online</a></li>
+            <li><a href="http://www.hamburg.de/planportal/">Share interactive maps online</a></li>
             <li><a href="http://www.machsleiser.de/karte">Let citizens complain</a></li>
             <li><a href="http://www.buergerbeteiligung.de/">Give suggestions a spatial dimension</a></li>
           </ul>
@@ -93,14 +94,14 @@
           <ul class="plain centered">
             <li><a href="http://onemilliontweetmap.com">Social media - big data</a></li>
             <li><a href="http://goo.gl/ctcxmS">Geocoding</a></li>
-            <li><a href="http://www.statistik.at/web_de/klassifikationen/regionale_gliederungen/gemeinden/index.html">Administrative units</a></li>
+            <li><a href="https://www.data.gv.at/suche/?search-term=&tagFilter_Verwaltungsgrenzen=on#showresults">Administrative units</a></li>
           </ul>
         </section>
         <section>
           <h2>Where is the WHERE quiz</h2>
           <ul class="plain centered">
             <li><a href="http://geizhals.at/">http://geizhals.at/</a></li>
-            <li><a href="http://drei.at/">http://drei.at/</a></li>
+            <li><a href="http://www.t-mobile.at/">http://t-mobile.at/</a></li>
             <li><a href="http://post.at/">http://post.at/</a></li>
             <li><a href="http://fahrplan.oebb.at/">http://fahrplan.oebb.at/</a></li>
             <li><a href="http://strava.com/">http://strava.com/</a></li>
@@ -117,9 +118,6 @@
         </section>
         <section>
           <h3><a href="http://www.youtube.com/watch?v=mCidOGLSWkU">Paul Ramsey:<br>Spatial IT and the Spatial Web</a></h3>
-        </section>
-        <section>
-          <h2>Take-home message?</h2>
         </section>
         <section>
           <img src="img/different.jpg" class="double">
@@ -161,8 +159,8 @@ div.full {
           <p>Goal: Use your own data</p>
           <pre><code class="javascript" data-trim>
 new ol.layer.Vector({
-  source: new ol.source.GeoJSON({
-    projection: 'EPSG:3857',
+  source: new ol.source.Vector({
+    format: new ol.format.GeoJSON(),
     url: 'mydata.geojson'
   })
 })
@@ -190,7 +188,6 @@ new ol.layer.Vector({
         </section>
         <section>
           <p>Goal: Map preview of spatial data</p>
-          <p class="fragment">Goal: Avoid that stupid text editor</p>
           <p class="fragment">Goal: History of changes</p>
           <p class="fragment">Goal: Team collaboration and communication</p>
           <p class="fragment">Goal: Publish web sites easily</p>
@@ -198,7 +195,7 @@ new ol.layer.Vector({
         </section>
         <section>
           <h3>Group exercise: GitHub</h3>
-          <p>How to commit an image file to GitHub.</p>
+          <p>How to commit an image file to GitHub</p>
           <p>How to publish a repository as web site</p>
         </section>
         <section>
@@ -213,7 +210,7 @@ new ol.layer.Vector({
         <section>
           <h3>Group exercise: CSS</h3>
           <p>Bootstrap makes CSS easy. Using the map from the
-            <a href="#/10">Your first online map</a> example, create a page with
+            <a href="#/9">Your first online map</a> example, create a page with
             2 columns, each spanning half of the available page width. Place the
             map in the left, and some help text in the right column.</p>
         </section>
@@ -230,8 +227,8 @@ new ol.layer.Vector({
           <p>Task: Project setup on GitHub
           <ul class="fragment">
             <li>Create user accounts on GitHub (each group member)</li>
-            <li>Ask @ahocevar to make you members of tuwien-geoweb</li>
-            <li>Create a project for your group, named 'g01-2014', 'g02-2014' etc.</li>
+            <li>Ask @ahocevar to make you members of tuwien-geoweb-2015</li>
+            <li>Create a project for your group, named 'g01-block3', 'g02-block3' etc.</li>
           </ul>
         </section>
         <section>
@@ -250,8 +247,8 @@ new ol.layer.Vector({
     </div>
 
     <!-- reveal.js loading and configuration -->
-    <script src="components/reveal.js/lib/js/head.min.js"></script>
-    <script src="components/reveal.js/js/reveal.min.js"></script>
+    <script src="bower_components/reveal.js/lib/js/head.min.js"></script>
+    <script src="bower_components/reveal.js/js/reveal.min.js"></script>
     <script>
       // Full list of configuration options available here:
       // https://github.com/hakimel/reveal.js#configuration
@@ -265,12 +262,12 @@ new ol.layer.Vector({
 
         // Optional libraries used to extend on reveal.js
         dependencies: [{
-          src: 'components/reveal.js/lib/js/classList.js',
+          src: 'bower_components/reveal.js/lib/js/classList.js',
           condition: function() {
             return !document.body.classList;
           }
         }, {
-          src: 'components/reveal.js/plugin/highlight/highlight.js',
+          src: 'bower_components/reveal.js/plugin/highlight/highlight.js',
           async: true,
           callback: function() {
             hljs.initHighlightingOnLoad();

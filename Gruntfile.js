@@ -23,7 +23,7 @@ module.exports = function(grunt) {
       other: {
         // 3rd party components js and css
         expand: true,
-        src: ['components/**/*.js', 'components/**/*.css'],
+        src: ['bower_components/**/*.js', 'bower_components/**/*.css'],
         dest: build
       }
     },
