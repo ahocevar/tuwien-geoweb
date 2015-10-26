@@ -9,14 +9,14 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <link rel="stylesheet" href="components/reveal.js/css/reveal.min.css">
+    <link rel="stylesheet" href="bower_components/reveal.js/css/reveal.min.css">
     <link rel="stylesheet" href="theme/geoweb.css" id="theme">
 
     <!-- For syntax highlighting -->
-    <link rel="stylesheet" href="components/reveal.js/lib/css/zenburn.css">
+    <link rel="stylesheet" href="bower_components/reveal.js/lib/css/zenburn.css">
 
     <!--[if lt IE 9]>
-    <script src="components/reveal.js/lib/js/html5shiv.js"></script>
+    <script src="bower_components/reveal.js/lib/js/html5shiv.js"></script>
     <![endif]-->
     <style>
       .reveal h1.humble {
@@ -122,8 +122,8 @@
     </div>
 
     <!-- reveal.js loading and configuration -->
-    <script src="components/reveal.js/lib/js/head.min.js"></script>
-    <script src="components/reveal.js/js/reveal.min.js"></script>
+    <script src="bower_components/reveal.js/lib/js/head.min.js"></script>
+    <script src="bower_components/reveal.js/js/reveal.min.js"></script>
     <script>
       // Full list of configuration options available here:
       // https://github.com/hakimel/reveal.js#configuration
@@ -137,12 +137,12 @@
 
         // Optional libraries used to extend on reveal.js
         dependencies: [{
-          src: 'components/reveal.js/lib/js/classList.js',
+          src: 'bower_components/reveal.js/lib/js/classList.js',
           condition: function() {
             return !document.body.classList;
           }
         }, {
-          src: 'components/reveal.js/plugin/highlight/highlight.js',
+          src: 'bower_components/reveal.js/plugin/highlight/highlight.js',
           async: true,
           callback: function() {
             hljs.initHighlightingOnLoad();
