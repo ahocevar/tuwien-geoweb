@@ -194,54 +194,56 @@ new ol.layer.Vector({
           <a href="https://github.com/"><img class="fragment" src="img/github.png" class="double"></a>
         </section>
         <section>
-          <h3>Group exercise: GitHub</h3>
-          <p>How to push an image file to GitHub</p>
-          <p>How to edit files on disk and push changes</p>
-        </section>
-        <section>
-          <h3>Group exercise: Web maps</h3>
-          <p>EPSG:3857 and EPSG:4326 are used in the <a href="#/10">Your first
-            online map</a> example. What does EPSG mean, and what do the
-            numbers mean?</p>
-          <p>Find the south pole on
-            <a href="http://openstreetmap.org/">http://openstreetmap.org/</a>.
-            Are you happy? Why (not)?</p>
-        </section>
-        <section>
-          <h3>Group exercise: CSS</h3>
-          <p>Bootstrap makes CSS easy. Using the map from the
-            <a href="#/9">Your first online map</a> example, create a page with
-            2 columns, each spanning half of the available page width. Place the
-            map in the left, and some help text in the right column.</p>
-        </section>
-       <section>
-          <h3>Group exercise: GeoJSON</h3>
-          <p>GeoJSON has become the de-facto standard transport format for 2D
-            geospatial data. Is it also useful as storage format? What are its
-            benefits, what its limitations?</p>
-          <p>Give a quick step-by-step tutorial for exporting geospatial data
-            from a Desktop GIS to GeoJSON.</p>
-        </section>
-        <section>
-          <h2>Exercise - Part 1</h2>
-          <p>Task: Project setup on GitHub
-          <ul class="fragment">
-            <li>Create user accounts on GitHub (each group member)</li>
+          <h3>Group exercise: GitHub project setup</h3>
+          <ul>
+            <li>Create user accounts (one for each group member)</li>
             <li>Ask @ahocevar to make you members of tuwien-geoweb-2015</li>
             <li>Create a project for your group, named 'g01-block3', 'g02-block3' etc.</li>
           </ul>
         </section>
         <section>
-          <h2>Exercise - Part 2</h2>
+          <h3>Group exercise: Dev environment</h3>
+          <ul>
+            <li>Set up <a href="https://desktop.github.com">GitHub Desktop</a></li>
+            <li>Set up the <a href="http://atom.io">Atom</a> text editor</li>
+            <li>Download the <a href="https://github.com/ahocevar/openlayers-app">OpenLayers app template</a></li>
+            <li>Make it work - you'll need npm, node and maybe Java.</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Exercise 1: Group map</h3>
           <p>Task: Create a map with your group members' locations</p>
           <ul class="fragment">
-            <li>Look at <a href="examples/districts.html">this example</a> for inspiration</li>
-            <li>Create GitHub tickets for steps needed to accomplish the task</li>
-            <li>Organize the tickets in one or more milestones</li>
-            <li>Work your way through the tickets to finalize the task</li>
-            <li>Publish the map using GitHub (gh-pages)</li>
-            <li>Create a release in GitHub and notify @ahocevar</li>
+            <li>Use a nice background map.</li>
+            <li>Use <a href="http://geojson.io/">http://geojson.io/</a> to draw the locations</li>
+            <li>Get familiar with and use GitHub tickets, milestones, releases, forks and pull requests</li>
+            <li>Get familiar with and use git add, commit, push, branch and tag</li>
+            <li>Use GitHub's gh-pages to publish the map.</li>
           </ul>
+        </section>
+        <section>
+          <h4>Hints for exercise 1</h4>
+          <p><a href="http://openlayers.org/">OpenLayers</a> examples and docs will help - especially for finding a nice background map</p>
+          <p>The master branch should have an empty dist directory. But you can push it to gh-pages as subtree:</p>
+          <pre><code>git add -f dist/*
+git commit -m "Distribute"
+git subtree push --force origin gh-pages
+git reset HEAD^
+</code></pre>
+        </section>
+      <section>
+          <h3>Exercise 2: CSS</h3>
+          <p>Task: A nice layout for the map from exercise 1</p>
+          <ul class="fragment">
+            <li>Update the page from exercise 1 to have a 2-column layout.</li>
+            <li>Place the map in
+            the left, and some info about the group members in the right column.</li>
+            <li>Again, make use of GitHub, git and gh-pages</li>
+          </ul>
+        </section>
+        <section>
+          <h4>Hints for exercise 2</h4>
+          <p><a href="http://getbootstrap.com">Bootstrap</a> makes CSS easy. It brings simple grid layouts, and many page components like menus, buttons, etc.</p>
         </section>
       </div>
     </div>
