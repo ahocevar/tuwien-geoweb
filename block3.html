@@ -198,17 +198,19 @@ new ol.layer.Vector({
           <ul>
             <li>Create user accounts (one for each group member)</li>
             <li>Ask @ahocevar to make you members of tuwien-geoweb-2015</li>
-            <li>Create a project for your group, named 'g01-block3', 'g02-block3' etc.</li>
+            <li>Create a project for your group, named 'g01-block3', 'g02-block3' etc.</li
           </ul>
         </section>
         <section>
           <h3>Group exercise: Dev environment</h3>
           <ul>
-            <li>Set up <a href="https://desktop.github.com">GitHub Desktop</a></li>
+            <li>Set up git, e.g. using <a href="https://desktop.github.com">GitHub Desktop</a></li>
             <li>Set up the <a href="http://atom.io">Atom</a> text editor</li>
             <li>Download the <a href="https://github.com/ahocevar/openlayers-app">OpenLayers app template</a></li>
-            <li>Make it work - you'll need npm, node and maybe Java.</li>
-          </ul>
+            <li>Make it work - you'll need <a href="http://nodejs.org">node</a> and maybe <a href="http://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html">Java</a>.</li>
+          </ul><p>
+          <p>Note for Windows users: The portable <a href="https://tuwel.tuwien.ac.at/pluginfile.php/566274/mod_resource/content/2/GitNodeSDK_2.5.3.paf.exe?forcedownload=1">GitNodeSDK</a> app contains Git, Atom, node an Java.</p>
+
         </section>
         <section>
           <h3>Exercise 1: Group map</h3>
@@ -217,18 +219,21 @@ new ol.layer.Vector({
             <li>Use a nice background map.</li>
             <li>Use <a href="http://geojson.io/">http://geojson.io/</a> to draw the locations</li>
             <li>Get familiar with and use GitHub tickets, milestones, releases, forks and pull requests</li>
-            <li>Get familiar with and use git add, commit, push, branch and tag</li>
-            <li>Use GitHub's gh-pages to publish the map.</li>
+            <li>Get familiar with and use <a href="http://git-scm.com/">git</a> add, commit, push, branch and tag</li>
+            <li>Use GitHub pages (gh-pages) to publish the map.</li>
           </ul>
         </section>
         <section>
           <h4>Hints for exercise 1</h4>
           <p><a href="http://openlayers.org/">OpenLayers</a> examples and docs will help - especially for finding a nice background map</p>
-          <p>The master branch should have an empty dist directory. But you can push it to gh-pages as subtree:</p>
-          <pre><code>git add -f dist/*
-git commit -m "Distribute"
-git subtree push --force origin gh-pages
-git reset HEAD^
+          <p>The page you'll want to publish is in the dist directory. The master branch should not contain a dist directory. Solution: create a release tag:</p>
+          <pre><code class="language-bash">git checkout -b release-1.0 master
+git add -f dist/*
+git commit -m "Tagging the 1.0 release"
+git tag 1.0 -m "1.0"
+git push --tags
+git subtree push --force --prefix dist origin gh-pages
+git checkout master
 </code></pre>
         </section>
       <section>
