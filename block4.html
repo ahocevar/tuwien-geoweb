@@ -10,6 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
     <link rel="stylesheet" href="bower_components/reveal.js/css/reveal.min.css">
+    <!--link rel="stylesheet" href="bower_components/reveal.js/css/print/pdf.css"-->
     <link rel="stylesheet" href="theme/geoweb.css" id="theme">
 
     <!-- For syntax highlighting -->
@@ -125,7 +126,7 @@
           <h3>Spatial SQL with SpatiaLite</h3>
           <p><a href="http://workshops.boundlessgeo.com/postgis-intro/">http://workshops.boundlessgeo.com/postgis-intro/</a></p>
           <p>Download the data bundle, but not OpenGeo Suite</p>
-          <p>Download spatialite-gui: <a href="http://www.gaia-gis.it/gaia-sins/windows-bin-x86-prev/spatialite_gui-1.5.0-stable-win-x86.zip">Windows</a>|<a href="http://www.lthe.fr/PagePerso/debionne/software/spatialite_gui_1_5_0_static.dmg">OSX</a></p>
+          <p><a href="https://github.com/tuwien-geoweb-2015/Spatial_Query_Tutorial_NYC_Subway">SpatiaLite Workshop</a>, includes SpatiaLite software</p>
           <p><a href="http://www.gaia-gis.it/spatialite-3.0.0-BETA/spatialite-sql-3.0.0.html">SpatiaLite SQL Reference</a></p>
           <p><a href="http://www.sqlite.org/lang.html">SQLite SQL Reference</a></p>
         </section>
@@ -180,9 +181,9 @@ SELECT AddGeometryColumn('feedback', 'geom', 4326, 'POINT', 'XY');
         <section>
           <h3>SpatiaLite layers in GeoServer</h3>
           <p>SpatiaLite data store</p>
-          <p>Path: /scratch/users/geoweb2014/htdocs/gXX/ + file</p>
+          <p>Path: /scratch/users/geoweb2015/htdocs/gXX/ + file</p>
         </section>
-        <section>
+        <!--section>
           <h2>Group exercises</h2>
           <ol>
             <li>SpatiaLite: How to import GeoJSON</li>
@@ -217,27 +218,25 @@ SELECT AddGeometryColumn('feedback', 'geom', 4326, 'POINT', 'XY');
             to OpenStreetMap.</p>
           <p>Sign up, find something wrong/missing in OpenSteetMap, and fix
             it.</p>
-        </section>
+        </section-->
         <section>
-          <h2>Exercise - Part 1</h2>
+          <h2>Exercise 1</h2>
           <h3>Task: JavaScript + WFS feedback form</h3>
           <ul>
             <li>Use spatialite-gui to add a "geom" Point column to the feedback table</li>
             <li>Configure the feedback table as layer in GeoServer</li>
             <li>Save your feedback.php as feedback.html on GitHub.</li>
-            <li>Add some JavaScript (change gXX to match your group):
-              <pre><code class="html" data-trim>&lt;script src="http://openlayers.org/en/v3.0.0/build/ol.js"&gt;&lt;/script&gt;
-&lt;script src="http://bit.ly/1An0jZy"&gt;&lt;/script&gt;
-&lt;script&gt;
-  featureType = "feedback";
-  featureNS = "http://geoweb/2014/gXX";
-&lt;/script&gt;</code></pre></li>
-          <li>Change the &lt;form&gt; element:
-            <pre><code class="html" data-trim>&lt;form action="javascript:submitForm();"&gt;</code></pre>
+            <li>Use a <a href="https://gist.github.com/ahocevar/2b24dd3cbba5a95f9f0d">WFS-T</a> and GeoServer instead of PHP to save the form</li>
+            <li>Add a <a href="https://gist.github.com/ahocevar/efc8efe18b476c06313f">point</a> (e.g. <a href="https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/Using_geolocation">Geolocation</a>) to the WFS request</li>
           </ul>
         </section>
         <section>
-          <h2>Exercise - Part 2</h2>
+          <h4>Hints for exercise 1</h4>
+          <p>Use XMLHttpRequest to POST the WFS-T XML to GeoServer</p>
+          <p>Instead of building the WFS-T XML manually, you can let OpenLayers <a href="http://openlayers.org/en/v3.10.1/apidoc/ol.format.WFS.html#writeTransaction">build it</a> for you.</p>
+        </section>
+        <section>
+          <h2>Exercise 2</h2>
           <h3>Task: Show feedback coordinates on a map next to the form</h3>
           <ul>
             <li>Create a copy of map.html (feedback_map.html) from last week's
