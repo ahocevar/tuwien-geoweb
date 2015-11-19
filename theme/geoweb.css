@@ -9,13 +9,13 @@
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 300;
-  src: local('Open Sans Light'), local('OpenSans-Light'), url(fonts/open-sans-light.woff) format('woff');
+  src: local('Open Sans Light'), local('OpenSans-Light'), url(font/open-sans-light.woff) format('woff');
 }
 @font-face {
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 400;
-  src: local('Open Sans'), local('OpenSans'), url(fonts/open-sans.woff) format('woff');
+  src: local('Open Sans'), local('OpenSans'), url(font/open-sans.woff) format('woff');
 }
 @font-face {
   font-family: 'Open Sans';
@@ -29,7 +29,7 @@
  *
  * Based on ol3.css from http://github.com/tschaub/say-hello-to-ol3/
  * Licensed under the BSD license
- * 
+ *
  * Based on One-Mozilla theme for Mozillians.
  * copyleft @pablocubico
  *
