@@ -10,6 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
     <link rel="stylesheet" href="bower_components/reveal.js/css/reveal.min.css">
+    <!--link rel="stylesheet" href="bower_components/reveal.js/css/print/pdf.css"-->
     <link rel="stylesheet" href="theme/geoweb.css" id="theme">
 
     <!-- For syntax highlighting -->
@@ -213,7 +214,7 @@ $('.popover form')[0].onsubmit = function(e) {
   feature.setGeometry(new ol.geom.Point(evt.coordinate));
   feature.set('comment', this.comment.value);
   var xml = new ol.format.WFS().writeTransaction([feature], null, null, {
-    featureType: 'comments', featureNS: 'http://geoweb/2014/gXX',
+    featureType: 'comments', featureNS: 'http://geoweb/2015/gXX',
     gmlOptions: {srsName: 'EPSG:3857'}
   });
   var xhr = new XMLHttpRequest();
@@ -233,20 +234,20 @@ $('.popover form')[0].onsubmit = function(e) {
           <pre><code class="js" data-trim>
 source: new ol.source.ImageWMS({
   url: 'http://student.ifip.tuwien.ac.at/geoserver/wms',
-  params: {'LAYERS': 'gXX_2014:normalized,gXX_2014:comments'}
+  params: {'LAYERS': 'gXX_2015:normalized,gXX_2015:comments'}
 }),
           </code></pre>
         </section>
         <section>
           <h2>The final exercise</h2>
-          <h3>Residential location optimizer</h3>
-          <p>Presentation: January 15th, 10:00am, PC1</p>
+          <h3>Location Analyzer :-)</h3>
+          <p>Presentation: January 14th, 10:00am, PC1</p>
         </section>
         <section>
           <h3>Minimum requirements</h3>
           <p>Today's census map with extensions. Replace
             U.S. census data with data for Vienna/Austria that is relevant for
-            decision making in finding an optimal residential location.</p>
+            decision making in finding an optimal location.</p>
         </section>
         <section>
           <h3>Improvement ideas</h3>
